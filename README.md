@@ -4,6 +4,6 @@
  <!-- ![Game Banner](assets/banner.png)o -->
 
 
-```bash
+```
 git clone https://github.com/username/mythical-plantation.git
 cd mythical-plantation
