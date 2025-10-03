@@ -1,4 +1,4 @@
-Mythical Plantation 🌿✨
+# Mythical Plantation 🌿✨
 https://img.shields.io/badge/Unity-2022.3+-000?style=for-the-badge&logo=unity
 https://img.shields.io/badge/License-MIT-green?style=for-the-badge
 https://img.shields.io/badge/Platform-Windows%2520%257C%2520MacOS%2520%257C%2520Linux-blue?style=for-the-badge
