@@ -1,9 +1,4 @@
 # 🌱 Mythical Plantation 🌿
-> Sebuah game simulasi perkebunan fantasi di mana pemain membangun, merawat, dan mengembangkan tanaman mistis untuk menciptakan ekosistem ajaib.  
+> Repository untuk tugas Game Dev kelas 10 PPLG SMK Raden Umar Said Kudus  
 
  <!-- ![Game Banner](assets/banner.png)o -->
-
-
-```
-git clone https://github.com/username/mythical-plantation.git
-cd mythical-plantation
