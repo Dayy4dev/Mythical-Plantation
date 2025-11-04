@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public float scaleFactor = 1.1f;
-    public float speed = 10f; 
+    public float speed = 10f;
 
     private Vector3 originalScale;
     private Vector3 targetScale;
@@ -17,7 +17,7 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     void Update()
     {
-        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * speed);
+        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.unscaledDeltaTime * speed);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
