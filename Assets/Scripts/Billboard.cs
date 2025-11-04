@@ -11,10 +11,8 @@ public class Billboard : MonoBehaviour
 
     void LateUpdate()
     {
-        // Selalu hadap kamera
         transform.forward = Camera.main.transform.forward;
 
-        // Kunci skala biar tidak gepeng
         transform.localScale = originalScale;
     }
 }

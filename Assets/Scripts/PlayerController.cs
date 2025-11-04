@@ -2,35 +2,44 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public float moveSpeed;
-    float speedX, speedY;
+    public float moveSpeed = 3f;
     public Rigidbody2D rb;
-
     private Vector2 input;
     private Vector2 lastMoveDirection;
     private bool facingLeft = true;
 
+    public bool autoMove = false;
+    public float moveDuration = 2f;
+    public float idleDuration = 1.5f;
+
+    private float timer;
+    private bool isMoving = true;
+    private Vector2 randomDirection;
+
     Animator anim;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        timer = Random.Range(0, moveDuration);
+        randomDirection = GetRandomDirection();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // speedX = Input.GetAxis("Horizontal") * moveSpeed;
-        // speedY = Input.GetAxis("Vertical") * moveSpeed;
-        // rb.linearVelocity = new Vector2(speedX, speedY);
+        if (autoMove)
+        {
+            AutoMovement();
+        }
+        else
+        {
+            ProsesInput();
+        }
 
-        ProsesInput();
         Animasi();
 
-        if (input.x < 0 && !facingLeft || input.x > 0 && facingLeft) {
+        if (input.x < 0 && !facingLeft || input.x > 0 && facingLeft)
+        {
             Flip();
         }
     }
@@ -42,7 +51,6 @@ public class PlayerControl : MonoBehaviour
 
     void ProsesInput()
     {
-
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
@@ -51,10 +59,44 @@ public class PlayerControl : MonoBehaviour
             lastMoveDirection = input;
         }
 
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
-
+        input.x = moveX;
+        input.y = moveY;
         input.Normalize();
+    }
+
+    void AutoMovement()
+    {
+        timer -= Time.deltaTime;
+
+        if (isMoving)
+        {
+            input = randomDirection;
+
+            if (timer <= 0)
+            {
+                isMoving = false;
+                timer = idleDuration;
+                input = Vector2.zero;
+            }
+        }
+        else
+        {
+            input = Vector2.zero;
+
+            if (timer <= 0)
+            {
+                isMoving = true;
+                timer = moveDuration;
+                randomDirection = GetRandomDirection();
+            }
+        }
+    }
+
+    Vector2 GetRandomDirection()
+    {
+        Vector2 dir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        dir.Normalize();
+        return dir;
     }
 
     void Animasi()
@@ -71,6 +113,6 @@ public class PlayerControl : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
-        facingLeft = !facingLeft;   
+        facingLeft = !facingLeft;
     }
 }

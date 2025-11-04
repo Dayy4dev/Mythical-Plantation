@@ -8,6 +8,7 @@ public class bingBergerak : MonoBehaviour
 
     private Vector2 input;
     private Vector2 lastMoveDirection;
+    private bool facingLeft = true;
 
     Animator anim;
 
@@ -28,7 +29,10 @@ public class bingBergerak : MonoBehaviour
 
         ProsesInput();
         Animasi();
-
+if (input.x < 0 && !facingLeft || input.x > 0 && facingLeft)
+        {
+            Flip();
+        }
     }
 
     private void FixedUpdate()
@@ -60,6 +64,14 @@ public class bingBergerak : MonoBehaviour
         anim.SetFloat("MoveMagnitude", input.magnitude);
         anim.SetFloat("LastMoveX", lastMoveDirection.x);
         anim.SetFloat("LastMoveY", lastMoveDirection.y);
+    }
+
+    void Flip()
+    {
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+        facingLeft = !facingLeft;
     }
 
 }

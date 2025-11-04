@@ -12,7 +12,6 @@ public class YSort : MonoBehaviour
 
     void LateUpdate()
     {
-        // semakin rendah Y, semakin depan
         sr.sortingOrder = -(int)(transform.position.y * 100);
     }
 }
